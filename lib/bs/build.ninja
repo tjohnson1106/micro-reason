@@ -1,0 +1,41 @@
+ppx_checked_files = /home/thomas/Code/web/reason/reason-blog/node_modules/graphql_ppx/ppx
+g_pkg_flg = -bs-package-name reason-blog -bs-ns ReasonBlog
+src_root_dir = /home/thomas/Code/web/reason/reason-blog
+bsc = /home/thomas/Code/web/reason/reason-blog/node_modules/bs-platform/lib/bsc.exe
+bsdep = /home/thomas/Code/web/reason/reason-blog/node_modules/bs-platform/lib/bsb_helper.exe
+warnings = -w -30-40+6+7+27+32..39+44+45+101
+bsc_flags = -nostdlib -I '/home/thomas/Code/web/reason/reason-blog/node_modules/bs-platform/lib/ocaml' -bs-super-errors -color always
+ppx_flags = -ppx '/home/thomas/Code/web/reason/reason-blog/node_modules/graphql_ppx/ppx'
+g_pkg_incls = -I /home/thomas/Code/web/reason/reason-blog/node_modules/reason-react/lib/ocaml -I /home/thomas/Code/web/reason/reason-blog/node_modules/reason-apollo/lib/ocaml -I /home/thomas/Code/web/reason/reason-blog/node_modules/@glennsl/bs-json/lib/ocaml
+bs_package_dev_includes = 
+g_ns = -bs-ns ReasonBlog
+bsb_dir_group = 0
+refmt = /home/thomas/Code/web/reason/reason-blog/node_modules/bs-platform/lib/refmt.exe
+reason_react_jsx = -bs-jsx 3
+refmt_flags = --print binary
+g_lib_incls = -I . -I src
+rule build_ast_and_module_sets_from_re
+  command = $bsc -pp "$refmt $refmt_flags" $reason_react_jsx  $ppx_flags $warnings $bsc_flags -c -o $out -bs-syntax-only -bs-binary-ast -impl $in
+  description = [34mBuilding[39m [2m${out}[22m
+build src/index.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/index.re |  $ppx_checked_files
+rule build_deps
+  command = $bsdep $g_ns -g $bsb_dir_group $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build src/index.d : build_deps src/index.mlast |  $ppx_checked_files
+rule re_cmj_cmi
+  command = $bsc $g_pkg_flg  -bs-re-out -bs-super-errors $g_pkg_incls $g_lib_incls $bsc_extra_includes $warnings $bsc_flags $gentypeconfig -o $out -c  $in $postbuild
+  dyndep = $in_e.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build src/index-ReasonBlog.cmj |  $src_root_dir/src/index.js src/index-ReasonBlog.cmi : re_cmj_cmi src/index.mlast ||  src/index.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output es6:src
+build src/ApolloClient.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/ApolloClient.re |  $ppx_checked_files
+build src/ApolloClient.d : build_deps src/ApolloClient.mlast |  $ppx_checked_files
+build src/ApolloClient-ReasonBlog.cmj |  $src_root_dir/src/ApolloClient.js src/ApolloClient-ReasonBlog.cmi : re_cmj_cmi src/ApolloClient.mlast ||  src/ApolloClient.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output es6:src
+rule build_package
+  command = $bsc -w -49 -no-alias-deps -bs-cmi-only -c $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build ReasonBlog.cmi : build_package ReasonBlog.mlmap
