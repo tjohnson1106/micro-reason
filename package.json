@@ -23,7 +23,7 @@
     "eject": "react-scripts eject",
     "re:build": "bsb -make-world -clean-world",
     "re:watch": "bsb -make-world -clean-world -w",
-    "rebuild-styles": "npx tailwind build ./src/styles.css -o ./src/build/style/index.css"
+    "re:build-styles": "npx tailwind build ./src/styles.css -o ./src/build/styles/index.css"
   },
   "eslintConfig": {
     "extends": "react-app"
