@@ -15,4 +15,6 @@ S /home/thomas/Code/web/reason/reason-blog/node_modules/@glennsl/bs-json/lib/oca
 B /home/thomas/Code/web/reason/reason-blog/node_modules/@glennsl/bs-json/lib/ocaml
 S src
 B lib/bs/src
+S src/components
+B lib/bs/src/components
 ####BSB GENERATED: NO EDIT}

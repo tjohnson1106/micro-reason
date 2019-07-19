@@ -1,1 +1,1 @@
-{ "dirs" : [ "src" , "src/build" , "src/build/styles" ] , "generated" : [] }
+{ "dirs" : [ "src" , "src/build" , "src/build/styles" , "src/components" , "src/img" ] , "generated" : [] }

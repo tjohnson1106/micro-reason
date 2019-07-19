@@ -5,6 +5,6 @@ let make = (~closeModal) => {
     z-10 bg-gray-100 shadow-md
     p-5 modal-center animated zoomInUp"
     onClick={event => ReactEvent.Synthetic.stopPropagation(event)}>
-    // to be created
+    // closeModal={closeModal}
      <AddPostForm closeModal /> </div>;
 };

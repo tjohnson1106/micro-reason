@@ -1,1 +1,1 @@
-src/App-ReasonBlog.cmj : ReasonBlog.cmi
+src/App-ReasonBlog.cmj : ReasonBlog.cmi src/components/Counter-ReasonBlog.cmj src/components/Counter-ReasonBlog.cmi src/components/Header-ReasonBlog.cmj src/components/Header-ReasonBlog.cmi src/components/Modal-ReasonBlog.cmj src/components/Modal-ReasonBlog.cmi src/components/PostsList-ReasonBlog.cmj src/components/PostsList-ReasonBlog.cmi
