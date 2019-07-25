@@ -26,5 +26,5 @@ let makeApollo = _ => {
     );
 
   // apollo client instance
-  ReasonApollo.createApolloClient(~link, ~cache=inMemoryCache, ());
+  ReasonApollo.createApolloClient(~link=httpLink, ~cache=inMemoryCache, ());
 };

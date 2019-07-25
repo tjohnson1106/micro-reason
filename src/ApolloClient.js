@@ -10,7 +10,7 @@ function makeApollo(param) {
   var inMemoryCache = ApolloInMemoryCache.createInMemoryCache(undefined, undefined, /* () */0);
   var webSocketLink = ApolloLinks.webSocketLink("ws://localhost:8080/v1/graphql", true, undefined, /* () */0);
   var httpLink = ApolloLinks.createHttpLink("ws://localhost:8080/v1/graphql", undefined, undefined, undefined, undefined, undefined, /* () */0);
-  var link = ApolloLink.split((function (operation) {
+  ApolloLink.split((function (operation) {
           var operationDefinition = ApolloUtilities.getMainDefinition(operation.query);
           if (operationDefinition.kind === "OperationDefinition") {
             return operationDefinition.operation === "subscription";
@@ -18,7 +18,7 @@ function makeApollo(param) {
             return false;
           }
         }), webSocketLink, httpLink);
-  return ReasonApollo.createApolloClient(link, inMemoryCache, undefined, undefined, undefined, undefined, /* () */0);
+  return ReasonApollo.createApolloClient(httpLink, inMemoryCache, undefined, undefined, undefined, undefined, /* () */0);
 }
 
 export {
