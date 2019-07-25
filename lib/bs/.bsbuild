@@ -1,11 +1,12 @@
 5.0.6
 1
-8
+9
 App
 Index
 Modal
 Header
 Counter
+PostTypes
 PostsList
 AddPostForm
 ApolloClient
@@ -14,6 +15,7 @@ src/index,03
 src/components/Modal,04
 src/components/Header,04
 src/components/Counter,04
+src/components/PostTypes,04
 src/components/PostsList,04
 src/components/AddPostForm,04
 src/ApolloClient,04

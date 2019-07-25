@@ -4,5 +4,6 @@ ApolloClient
 Modal
 Header
 Counter
+PostTypes
 PostsList
 AddPostForm
